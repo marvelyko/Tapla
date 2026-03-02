@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tapla Admin – Orders</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Lato:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cream: "#FDFBF7",
+              deepBrown: "#3F2A1D",
+              honeyGold: "#D4A373",
+            },
+            fontFamily: {
+              display: ["Playfair Display", "serif"],
+              body: ["Lato", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Lato", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background-color: #fdfbf7;
+        color: #3f2a1d;
+      }
+
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+
+      .status-pill {
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+
+  <body
+    class="antialiased min-h-screen flex flex-col"
+    data-page="admin"
+  >
+    <header class="border-b border-brown-100/60 bg-cream/95">
+      <div
+        class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-2">
+          <div
+            class="w-8 h-8 rounded-full bg-honeyGold/90 flex items-center justify-center shadow-md shadow-honeyGold/40"
+          >
+            <span
+              class="text-[0.55rem] font-semibold tracking-[0.18em] text-cream uppercase"
+              >T</span
+            >
+          </div>
+          <div class="leading-tight">
+            <p
+              class="font-display text-base tracking-[0.2em] uppercase text-deepBrown"
+              data-i18n="admin.headerTitle"
+            >
+              Tapla Admin
+            </p>
+            <p
+              class="text-[0.65rem] text-deepBrown/70 tracking-[0.16em]"
+              data-i18n="admin.headerSubtitle"
+            >
+              Orders Overview
+            </p>
+          </div>
+        </div>
+        <a
+          href="./index.html"
+          class="text-[0.7rem] tracking-[0.18em] uppercase text-deepBrown/70 hover:text-deepBrown"
+          >View Site</a
+        >
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <p
+              class="text-[0.7rem] tracking-[0.2em] uppercase text-deepBrown/60 mb-1"
+              data-i18n="admin.badgeLabel"
+            >
+              Orders
+            </p>
+            <h1
+              class="font-display text-2xl text-deepBrown leading-snug"
+            >
+              <span data-i18n="admin.introTitle"
+                >Customer orders at a glance.</span
+              >
+            </h1>
+            <p
+              class="text-xs text-deepBrown/70 mt-1 max-w-xl"
+              data-i18n="admin.intro"
+            >
+              This panel reads directly from <code>localStorage</code>. Use it to
+              track, mark as completed, or remove orders captured from the
+              Tapla landing page.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-deepBrown/70">
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-cream px-3 py-1 border border-honeyGold/40"
+            >
+              <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+              <span data-i18n="admin.badgeChip">Local-only data</span>
+            </span>
+          </div>
+        </div>
+
+        <div
+          class="glass-panel rounded-2xl border border-honeyGold/40 shadow-lg shadow-deepBrown/10 overflow-hidden"
+        >
+          <div
+            class="px-4 sm:px-6 py-3 border-b border-brown-100/70 flex items-center justify-between gap-3 text-xs"
+          >
+            <div class="flex items-center gap-2 text-deepBrown/75">
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-deepBrown text-cream text-[0.7rem]"
+              >
+                O
+              </span>
+              <span
+                id="ordersCountLabel"
+                data-i18n="admin.countLabelZero"
+                >0 orders</span
+              >
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                id="exportOrdersBtn"
+                class="text-[0.7rem] tracking-[0.18em] uppercase text-deepBrown/70 hover:text-deepBrown"
+                aria-label="Export Tapla orders to CSV"
+              >
+                Export CSV
+              </button>
+              <button
+                id="clearAllOrdersBtn"
+                class="text-[0.7rem] tracking-[0.18em] uppercase text-deepBrown/60 hover:text-deepBrown disabled:opacity-40 disabled:cursor-not-allowed"
+                data-i18n="admin.clearAll"
+                aria-label="Clear all Tapla orders"
+              >
+                Clear All
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-xs sm:text-sm">
+              <thead class="bg-cream/80 border-b border-brown-100/70">
+                <tr class="text-left text-[0.7rem] sm:text-[0.75rem] tracking-[0.16em] uppercase text-deepBrown/60">
+                  <th
+                    class="px-3 sm:px-4 py-3 whitespace-nowrap"
+                    data-i18n="admin.tableDate"
+                  >
+                    Date
+                  </th>
+                  <th
+                    class="px-3 sm:px-4 py-3 whitespace-nowrap"
+                    data-i18n="admin.tableCustomer"
+                  >
+                    Customer
+                  </th>
+                  <th
+                    class="px-3 sm:px-4 py-3 whitespace-nowrap"
+                    data-i18n="admin.tablePhone"
+                  >
+                    Phone
+                  </th>
+                  <th
+                    class="px-3 sm:px-4 py-3 whitespace-nowrap"
+                    data-i18n="admin.tableEmail"
+                  >
+                    Email
+                  </th>
+                  <th
+                    class="px-3 sm:px-4 py-3 whitespace-nowrap"
+                    data-i18n="admin.tableAddress"
+                  >
+                    Address
+                  </th>
+                  <th
+                    class="px-3 sm:px-4 py-3 whitespace-nowrap"
+                    data-i18n="admin.tableProductQty"
+                  >
+                    Product / Qty
+                  </th>
+                  <th
+                    class="px-3 sm:px-4 py-3 whitespace-nowrap"
+                    data-i18n="admin.tableStatus"
+                  >
+                    Status
+                  </th>
+                  <th
+                    class="px-3 sm:px-4 py-3 whitespace-nowrap text-right"
+                    data-i18n="admin.tableActions"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody" class="divide-y divide-brown-100/80">
+                <!-- Filled by script.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <div
+            id="emptyState"
+            class="px-4 sm:px-6 py-6 text-center text-xs text-deepBrown/65 hidden"
+            data-i18n="admin.emptyState"
+          >
+            There are no orders stored yet. Once a customer places an order on
+            the Tapla landing page, you’ll see it here.
+          </div>
+        </div>
+
+        <p
+          class="text-[0.7rem] text-deepBrown/60"
+          data-i18n="admin.footerNote"
+        >
+          Note: This admin panel is intentionally lightweight and reads directly
+          from your browser’s <code>localStorage</code>. For production use,
+          integrate it with a secure backend and authenticated admin access.
+        </p>
+      </div>
+    </main>
+
+    <script src="/static/script.js"></script>
+  </body>
+</html>
+
