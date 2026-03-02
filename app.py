@@ -20,13 +20,6 @@ def send_async_email(flask_app, msg):
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DB_PATH = os.path.join(BASE_DIR, "orders.db")
 
-# Environment defaults for launch (override with real env vars in production)
-os.environ.setdefault("MAIL_USERNAME", "order.tapla@gmail.com")
-os.environ.setdefault("MAIL_PASSWORD", "tsev epgz tlcl uprs")
-os.environ.setdefault("ADMIN_PASSWORD", "tapla-admin-2024")
-os.environ.setdefault("MAIL_DEFAULT_SENDER", "order.tapla@gmail.com")
-
-
 def get_db_connection():
   conn = sqlite3.connect(DB_PATH)
   conn.row_factory = sqlite3.Row
@@ -73,7 +66,7 @@ app.config.update(
 
 mail = Mail(app)
 
-ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "tapla-admin")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "tapla-admin")
 
 # Ensure DB exists on app load (works with python app.py and gunicorn)
 init_db()
