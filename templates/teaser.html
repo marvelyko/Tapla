@@ -4,203 +4,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tapla | Coming Soon</title>
-
-    <!-- Fonts / Tailwind -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Lato:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              cream: "#FDFBF7",
-              deepBrown: "#3F2A1D",
-              honeyGold: "#D4A373",
-            },
-            fontFamily: {
-              display: ["Playfair Display", "serif"],
-              body: ["Lato", "system-ui", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
-
-    <style>
-      body {
-        font-family: "Lato", system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", sans-serif;
-        background-color: #0f0a07;
-        color: #fdfbf7;
-      }
-
-      .teaser-bg {
-        background-image: url("{{ url_for('static', filename='images/background-kitchen.png') }}");
-        background-size: cover;
-        background-position: center;
-        filter: blur(10px);
-        transform: scale(1.08);
-      }
-
-      .glass-panel {
-        background: rgba(22, 14, 9, 0.78);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(212, 163, 115, 0.32);
-      }
-
-      .btn-primary {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn-primary::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          120deg,
-          rgba(255, 255, 255, 0.4),
-          rgba(255, 255, 255, 0)
-        );
-        transform: translateX(-100%);
-        transition: transform 0.6s ease;
-      }
-
-      .btn-primary:hover::before {
-        transform: translateX(100%);
-      }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
 
-  <body class="antialiased" data-page="teaser">
-    <div class="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <!-- Background -->
-      <div class="absolute inset-0 teaser-bg"></div>
+  <body class="teaser-page">
+    <div class="teaser-wrapper">
+      <!-- Background: blurred image -->
       <div
-        class="absolute inset-0 bg-gradient-to-br from-black/80 via-deepBrown/80 to-black/85 mix-blend-multiply"
+        class="teaser-bg"
+        style="background-image: url('{{ url_for('static', filename='images/background-kitchen.png') }}?v=2');"
       ></div>
+      <div class="teaser-bg-overlay"></div>
+
+      <!-- Language toggle (top right) -->
+      <div class="teaser-lang-row">
+        <button type="button" data-lang-toggle="en" class="lang-btn active">EN</button>
+        <span class="teaser-lang-sep" aria-hidden="true">|</span>
+        <button type="button" data-lang-toggle="ka" class="lang-btn">KA</button>
+      </div>
 
       <!-- Content -->
-      <div
-        class="relative z-10 max-w-xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-8"
-      >
-        <!-- Logo -->
-        <div class="flex items-center justify-center gap-3">
-          <div
-            class="w-11 h-11 rounded-full bg-honeyGold/90 flex items-center justify-center shadow-md shadow-honeyGold/40"
-          >
-            <span
-              class="text-xs font-semibold tracking-[0.18em] text-deepBrown uppercase"
-              >T</span
-            >
-          </div>
-          <div class="leading-tight text-left">
-            <div
-              class="font-display text-2xl tracking-[0.22em] uppercase text-cream"
-            >
-              Tapla
-            </div>
-            <div class="text-[0.7rem] text-cream/70 tracking-[0.18em] uppercase">
-              Natural Georgian Treats
-            </div>
-          </div>
+      <div class="teaser-content">
+        <div class="teaser-logo-container">
+          <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Tapla - Natural Georgian Treats"
+            class="teaser-logo"
+            onerror="this.onerror=null; var w=this.closest('.teaser-logo-container'); if(w){ var d=document.createElement('div'); d.className='teaser-logo-fallback'; d.setAttribute('data-i18n','teaser.logoMissing'); d.textContent='Logo image missing'; w.innerHTML=''; w.appendChild(d); if(typeof setLanguage==='function') setLanguage(document.documentElement.lang||'en'); }"
+          />
         </div>
 
-        <!-- Glass panel -->
-        <div
-          class="glass-panel rounded-3xl px-6 sm:px-8 py-7 sm:py-9 shadow-2xl shadow-black/50 border border-honeyGold/35"
-        >
-          <p
-            class="text-[0.7rem] tracking-[0.22em] uppercase text-honeyGold/90 mb-3"
-          >
+        <div class="teaser-glass-card">
+          <p class="teaser-badge">
             <span data-i18n="teaser.badge">Coming Soon</span>
           </p>
-          <h1
-            class="font-display text-2xl sm:text-3xl lg:text-[2.1rem] leading-snug text-cream mb-3"
-          >
-            <span data-i18n="teaser.headline"
-              >Nature is preparing a surprise…</span
-            >
+          <h1 class="teaser-headline">
+            <span data-i18n="teaser.headline">Nature is preparing a surprise…</span>
           </h1>
-          <p
-            class="text-sm sm:text-[0.95rem] text-cream/80 leading-relaxed max-w-md mx-auto"
-          >
-            <span data-i18n="teaser.subtitle"
-              >Something pure and delicious is coming soon to your kitchen. Stay
-              tuned.</span
-            >
+          <p class="teaser-subtitle">
+            <span data-i18n="teaser.subtitle">Something pure and delicious is coming soon to your kitchen. Stay tuned.</span>
           </p>
 
-          <!-- Notify form -->
-          <form
-            id="teaserNotifyForm"
-            class="mt-6 space-y-3 text-xs sm:text-sm"
-          >
-            <label
-              for="teaserEmail"
-              class="sr-only"
-              data-i18n="teaser.notifyLabel"
-              >Notify me when we launch</label
-            >
-            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+          <form id="teaserNotifyForm" class="teaser-form">
+            <label for="teaserEmail" class="teaser-sr-only" data-i18n="teaser.notifyLabel">Notify me when we launch</label>
+            <div class="teaser-form-row">
               <input
                 id="teaserEmail"
                 type="email"
-                class="flex-1 rounded-full border border-honeyGold/40 bg-black/20 px-4 py-2 text-sm text-cream placeholder:text-cream/50 focus:outline-none focus:ring-2 focus:ring-honeyGold/70 focus:border-honeyGold/70"
+                class="teaser-input"
                 placeholder="you@example.com"
                 data-i18n-placeholder="teaser.notifyPlaceholder"
               />
-              <button
-                type="submit"
-                class="btn-primary inline-flex items-center justify-center gap-2 rounded-full bg-honeyGold text-deepBrown px-5 py-2 text-[0.7rem] font-semibold tracking-[0.2em] uppercase shadow-md shadow-honeyGold/40 hover:bg-honeyGold/90 focus-visible:ring-2 ring-honeyGold ring-offset-2 ring-offset-black/40 transition"
-              >
+              <button type="submit" class="teaser-btn-submit">
                 <span data-i18n="teaser.notifyCta">Notify Me</span>
               </button>
             </div>
-            <p
-              id="teaserNotifyFeedback"
-              class="text-[0.7rem] text-honeyGold/90 mt-1 hidden"
-              data-i18n="teaser.notifyFeedback"
-            >
+            <p id="teaserNotifyFeedback" class="teaser-feedback teaser-feedback-hidden" data-i18n="teaser.notifyFeedback">
               Thank you — we’ll let you know when Tapla opens its jars.
             </p>
           </form>
 
-          <!-- Socials -->
-          <div class="mt-6 pt-4 border-t border-cream/10">
-            <p
-              class="text-[0.7rem] tracking-[0.2em] uppercase text-cream/60 mb-2"
-              data-i18n="teaser.socialsTitle"
-            >
-              Follow the quiet countdown
-            </p>
-            <div class="flex items-center justify-center gap-3">
-              <button
-                class="w-9 h-9 rounded-full border border-cream/20 bg-black/10 flex items-center justify-center text-[0.75rem] text-cream/80 hover:text-cream hover:border-cream/60 transition"
-                aria-label="Open Tapla Instagram"
-              >
-                IG
-              </button>
-              <button
-                class="w-9 h-9 rounded-full border border-cream/20 bg-black/10 flex items-center justify-center text-[0.75rem] text-cream/80 hover:text-cream hover:border-cream/60 transition"
-                aria-label="Open Tapla Facebook"
-              >
-                FB
-              </button>
+          <div class="teaser-social-block">
+            <p class="teaser-social-title" data-i18n="teaser.socialsTitle">Follow the quiet countdown</p>
+            <div class="teaser-social-btns">
+              <button type="button" class="teaser-social-btn" aria-label="Open Tapla Instagram">IG</button>
+              <button type="button" class="teaser-social-btn" aria-label="Open Tapla Facebook">FB</button>
             </div>
           </div>
         </div>
 
-        <!-- Footer line -->
-        <p class="text-[0.65rem] text-cream/55 mt-4">
-          <span data-i18n="teaser.footerLine"
-            >Crafted in Georgia. Arriving soon.</span
-          >
+        <p class="teaser-footer-line">
+          <span data-i18n="teaser.footerLine">Crafted in Georgia. Arriving soon.</span>
         </p>
       </div>
     </div>
@@ -208,4 +82,3 @@
     <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>
-

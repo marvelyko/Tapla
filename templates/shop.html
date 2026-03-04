@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -115,22 +116,10 @@
           >
         </nav>
         <div class="flex items-center gap-3 text-xs">
-          <div class="flex items-center gap-1 text-[0.7rem] tracking-[0.18em] uppercase">
-            <button
-              type="button"
-              data-lang-toggle="ka"
-              class="transition hover:text-deepBrown text-deepBrown/50"
-            >
-              KA
-            </button>
+          <div class="flex items-center gap-1">
+            <button type="button" data-lang-toggle="ka" class="lang-btn">KA</button>
             <span class="text-deepBrown/40">|</span>
-            <button
-              type="button"
-              data-lang-toggle="en"
-              class="transition hover:text-deepBrown text-deepBrown/50"
-            >
-              EN
-            </button>
+            <button type="button" data-lang-toggle="en" class="lang-btn active">EN</button>
           </div>
         </div>
       </div>

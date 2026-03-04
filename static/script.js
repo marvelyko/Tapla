@@ -149,6 +149,7 @@ const translations = {
         "Thank you — we’ll let you know when Tapla opens its jars.",
       socialsTitle: "Follow the quiet countdown",
       footerLine: "Crafted in Georgia. Arriving soon.",
+      logoMissing: "Logo image missing — add static/images/logo.png",
     },
     shop: {
       eyebrow: "Our Products",
@@ -414,6 +415,7 @@ const translations = {
         "გმადლობთ — Tapla-ს გახსნისთანავე შეგატყობინებთ.",
       socialsTitle: "გადავყევით მშვიდ Cowntown-ს",
       footerLine: "შექმნილი საქართველოში. მალე მოვალთ.",
+      logoMissing: "ლოგო არ არის — დაამატეთ static/images/logo.png",
     },
     shop: {
       eyebrow: "ჩვენი პროდუქცია",
@@ -573,48 +575,65 @@ function setLanguage(lang) {
   }
 
   const textNodes = document.querySelectorAll("[data-i18n]");
-  textNodes.forEach((el) => {
-    const key = el.getAttribute("data-i18n");
-    const value = getTranslation(targetLang, key);
-    if (typeof value === "string" && value.length) {
-      el.textContent = value;
-    }
-  });
+  if (textNodes) {
+    textNodes.forEach((el) => {
+      if (!el) return;
+      try {
+        const key = el.getAttribute("data-i18n");
+        const value = getTranslation(targetLang, key);
+        if (typeof value === "string" && value.length) {
+          el.textContent = value;
+        }
+      } catch (_) {}
+    });
+  }
 
   const placeholderNodes = document.querySelectorAll(
     "[data-i18n-placeholder]"
   );
-  placeholderNodes.forEach((el) => {
-    const key = el.getAttribute("data-i18n-placeholder");
-    const value = getTranslation(targetLang, key);
-    if (typeof value === "string" && value.length) {
-      el.placeholder = value;
-    }
-  });
+  if (placeholderNodes) {
+    placeholderNodes.forEach((el) => {
+      if (!el) return;
+      try {
+        const key = el.getAttribute("data-i18n-placeholder");
+        const value = getTranslation(targetLang, key);
+        if (typeof value === "string" && value.length) {
+          el.placeholder = value;
+        }
+      } catch (_) {}
+    });
+  }
 
   const altNodes = document.querySelectorAll("[data-i18n-alt]");
-  altNodes.forEach((el) => {
-    const key = el.getAttribute("data-i18n-alt");
-    const value = getTranslation(targetLang, key);
-    if (typeof value === "string" && value.length) {
-      el.alt = value;
-    }
-  });
+  if (altNodes) {
+    altNodes.forEach((el) => {
+      if (!el) return;
+      try {
+        const key = el.getAttribute("data-i18n-alt");
+        const value = getTranslation(targetLang, key);
+        if (typeof value === "string" && value.length) {
+          el.alt = value;
+        }
+      } catch (_) {}
+    });
+  }
 
-  // Toggle active state on language switcher buttons (active = Honey Gold)
+  // Toggle active state on language switcher buttons (styling in style.css)
   const toggles = document.querySelectorAll("[data-lang-toggle]");
-  toggles.forEach((btn) => {
-    const btnLang = btn.getAttribute("data-lang-toggle");
-    if (!btnLang) return;
-    if (btnLang === targetLang) {
-      btn.classList.add("text-honeyGold", "font-semibold");
-      btn.classList.remove("text-deepBrown", "text-deepBrown/50");
-    } else {
-      btn.classList.remove("font-semibold", "text-honeyGold");
-      btn.classList.add("text-deepBrown/50");
-      btn.classList.remove("text-deepBrown");
-    }
-  });
+  if (toggles) {
+    toggles.forEach((btn) => {
+      if (!btn) return;
+      try {
+        const btnLang = btn.getAttribute("data-lang-toggle");
+        if (!btnLang) return;
+        if (btnLang === targetLang) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      } catch (_) {}
+    });
+  }
 }
 
 // ---------------------------
@@ -1436,44 +1455,77 @@ document.addEventListener("DOMContentLoaded", () => {
     (typeof localStorage !== "undefined" &&
       localStorage.getItem(TAPLA_LANG_KEY)) ||
     "en";
-  setLanguage(savedLang);
+  try {
+    setLanguage(savedLang);
+  } catch (err) {
+    if (typeof console !== "undefined" && console.warn) {
+      console.warn("setLanguage failed:", err);
+    }
+  }
 
-  initLandingPage();
-  initAdminPage();
-  initCheckoutPage();
+  try {
+    initLandingPage();
+  } catch (err) {
+    if (typeof console !== "undefined" && console.warn) {
+      console.warn("initLandingPage failed:", err);
+    }
+  }
+  try {
+    initAdminPage();
+  } catch (err) {
+    if (typeof console !== "undefined" && console.warn) {
+      console.warn("initAdminPage failed:", err);
+    }
+  }
+  try {
+    initCheckoutPage();
+  } catch (err) {
+    if (typeof console !== "undefined" && console.warn) {
+      console.warn("initCheckoutPage failed:", err);
+    }
+  }
 
+  // Language toggle: always attach so it works on teaser and all pages
   const toggles = document.querySelectorAll("[data-lang-toggle]");
-  toggles.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const lang = btn.getAttribute("data-lang-toggle");
-      if (!lang) return;
-      setLanguage(lang);
+  if (toggles && toggles.length > 0) {
+    toggles.forEach((btn) => {
+      if (btn) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const lang = btn.getAttribute("data-lang-toggle");
+          if (!lang) return;
+          setLanguage(lang);
+        });
+      }
     });
-  });
+  }
 
   // Intersection Observer-based fade-in-up for sections
   const revealEls = document.querySelectorAll(".reveal-on-scroll");
-  if ("IntersectionObserver" in window && revealEls.length > 0) {
+  if (
+    "IntersectionObserver" in window &&
+    revealEls &&
+    revealEls.length > 0
+  ) {
     revealEls.forEach((el) => {
-      el.classList.add("reveal-init");
+      if (el) el.classList.add("reveal-init");
     });
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && entry.target) {
             entry.target.classList.add("reveal-visible");
             observer.unobserve(entry.target);
           }
         });
       },
-      {
-        threshold: 0.15,
-      }
+      { threshold: 0.15 }
     );
 
-    revealEls.forEach((el) => observer.observe(el));
+    revealEls.forEach((el) => {
+      if (el) observer.observe(el);
+    });
   }
 });
 
