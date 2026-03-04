@@ -272,6 +272,12 @@
             >Product</a
           >
           <a
+            href="/shop"
+            class="text-deepBrown/70 hover:text-deepBrown transition"
+            data-i18n="nav.shop"
+            >Shop</a
+          >
+          <a
             href="#contact"
             class="text-deepBrown/70 hover:text-deepBrown transition"
             data-i18n="nav.contact"
@@ -365,6 +371,12 @@
             >Product</a
           >
           <a
+            href="/shop"
+            class="block py-1.5 text-deepBrown/80 hover:text-deepBrown"
+            data-i18n="nav.shop"
+            >Shop</a
+          >
+          <a
             href="#contact"
             class="block py-1.5 text-deepBrown/80 hover:text-deepBrown"
             data-i18n="nav.contact"
@@ -430,7 +442,7 @@
               <button
                 id="orderNowHero"
                 class="btn-primary inline-flex items-center gap-3 rounded-full bg-honeyGold text-deepBrown px-7 py-3.5 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase shadow-lg shadow-honeyGold/30 hover:bg-honeyGold/90 focus-visible:ring-2 ring-honeyGold ring-offset-2 ring-offset-cream transition"
-                aria-label="Order Tapla natural treat"
+                aria-label="Open Tapla shop"
               >
                 <span data-i18n="hero.ctaPrimary"></span>
                 <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-deepBrown text-cream text-[0.65rem]">
@@ -805,6 +817,174 @@
                 data-i18n="product.cardNote"></p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <div class="section-divider max-w-6xl mx-auto"></div>
+
+      <!-- Special Bundles / Offers -->
+      <section
+        id="offers"
+        class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 reveal-on-scroll"
+      >
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+          <div>
+            <p
+              class="text-xs tracking-[0.24em] uppercase text-deepBrown/60 mb-1"
+              data-i18n="offers.sectionEyebrow"
+            ></p>
+            <h2
+              class="font-display text-2xl sm:text-3xl text-deepBrown leading-snug"
+            >
+              <span data-i18n="offers.sectionTitle"></span>
+            </h2>
+          </div>
+          <p class="text-xs text-deepBrown/60 max-w-sm">
+            <span data-i18n="offers.sectionHint"
+              >Hand-picked bundles for sharing Tapla with family, friends, and
+              clients — all with complimentary delivery.</span
+            >
+          </p>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Family Bundle -->
+          <article
+            class="glass-panel rounded-2xl p-4 sm:p-5 border border-honeyGold/35 shadow-md shadow-honeyGold/20 flex flex-col justify-between"
+          >
+            <div class="space-y-3">
+              <div class="relative mb-2">
+                <div
+                  class="h-28 rounded-xl bg-gradient-to-br from-honeyGold/30 via-cream to-deepBrown/5 flex items-center justify-center"
+                >
+                  <span
+                    class="text-xs font-semibold tracking-[0.18em] uppercase text-deepBrown/75"
+                    data-i18n="offers.familyTitle"
+                  ></span>
+                </div>
+                <div
+                  class="absolute -top-2 -left-2 px-2 py-0.5 rounded-full bg-[#EF4444] text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-cream shadow-sm shadow-[#EF4444]/40"
+                >
+                  <span data-i18n="offers.badgeSale">Sale</span>
+                </div>
+              </div>
+              <p class="text-xs text-deepBrown/70" data-i18n="offers.familyBody">
+                Perfect when you’re gifting Tapla and keeping a jar for home —
+                3 jars total (2+1 on us).
+              </p>
+              <div class="mt-1 space-x-2 text-sm">
+                <span
+                  class="text-deepBrown/40 line-through"
+                  data-i18n="offers.familyOldPrice"
+                ></span>
+                <span
+                  class="font-semibold text-deepBrown"
+                  data-i18n="offers.familyPrice"
+                ></span>
+              </div>
+            </div>
+            <button
+              class="mt-4 btn-primary inline-flex items-center justify-center gap-2 rounded-full bg-honeyGold text-deepBrown px-4 py-2 text-[0.7rem] font-semibold tracking-[0.18em] uppercase shadow-md shadow-honeyGold/30 hover:bg-honeyGold/90 focus-visible:ring-2 ring-honeyGold ring-offset-2 ring-offset-cream transition"
+              data-combo-order
+              data-combo-id="family"
+              data-combo-name="Family Bundle (2+1 Free)"
+              data-combo-price="48"
+            >
+              <span data-i18n="offers.orderCta"></span>
+            </button>
+          </article>
+
+          <!-- The Duo -->
+          <article
+            class="glass-panel rounded-2xl p-4 sm:p-5 border border-honeyGold/35 shadow-md shadow-honeyGold/20 flex flex-col justify-between"
+          >
+            <div class="space-y-3">
+              <div class="relative mb-2">
+                <div
+                  class="h-28 rounded-xl bg-gradient-to-br from-deepBrown/5 via-cream to-honeyGold/20 flex items-center justify-center"
+                >
+                  <span
+                    class="text-xs font-semibold tracking-[0.18em] uppercase text-deepBrown/75"
+                    data-i18n="offers.duoTitle"
+                  ></span>
+                </div>
+                <div
+                  class="absolute -top-2 -left-2 px-2 py-0.5 rounded-full bg-honeyGold text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-deepBrown shadow-sm shadow-honeyGold/40"
+                >
+                  <span data-i18n="offers.badgeGift">Gift</span>
+                </div>
+              </div>
+              <p class="text-xs text-deepBrown/70" data-i18n="offers.duoBody">
+                One generous jar to keep at home and a smaller one to gift or
+                keep at the studio.
+              </p>
+              <div class="mt-1 space-x-2 text-sm">
+                <span
+                  class="text-deepBrown/40 line-through"
+                  data-i18n="offers.duoOldPrice"
+                ></span>
+                <span
+                  class="font-semibold text-deepBrown"
+                  data-i18n="offers.duoPrice"
+                ></span>
+              </div>
+            </div>
+            <button
+              class="mt-4 btn-primary inline-flex items-center justify-center gap-2 rounded-full bg-honeyGold text-deepBrown px-4 py-2 text-[0.7rem] font-semibold tracking-[0.18em] uppercase shadow-md shadow-honeyGold/30 hover:bg-honeyGold/90 focus-visible:ring-2 ring-honeyGold ring-offset-2 ring-offset-cream transition"
+              data-combo-order
+              data-combo-id="duo"
+              data-combo-name="The Duo (1kg + 0.5kg)"
+              data-combo-price="55"
+            >
+              <span data-i18n="offers.orderCta"></span>
+            </button>
+          </article>
+
+          <!-- Bulk Pack -->
+          <article
+            class="glass-panel rounded-2xl p-4 sm:p-5 border border-honeyGold/35 shadow-md shadow-honeyGold/20 flex flex-col justify-between"
+          >
+            <div class="space-y-3">
+              <div class="relative mb-2">
+                <div
+                  class="h-28 rounded-xl bg-gradient-to-br from-deepBrown/10 via-deepBrown/5 to-honeyGold/30 flex items-center justify-center"
+                >
+                  <span
+                    class="text-xs font-semibold tracking-[0.18em] uppercase text-deepBrown/75"
+                    data-i18n="offers.bulkTitle"
+                  ></span>
+                </div>
+                <div
+                  class="absolute -top-2 -left-2 px-2 py-0.5 rounded-full bg-deepBrown text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-cream shadow-sm shadow-deepBrown/50"
+                >
+                  <span data-i18n="offers.badgeBest">Best Value</span>
+                </div>
+              </div>
+              <p class="text-xs text-deepBrown/70" data-i18n="offers.bulkBody">
+                Ideal for studios, concept stores, or families who move through
+                Tapla quickly.
+              </p>
+              <div class="mt-1 space-x-2 text-sm">
+                <span
+                  class="text-deepBrown/40 line-through"
+                  data-i18n="offers.bulkOldPrice"
+                ></span>
+                <span
+                  class="font-semibold text-deepBrown"
+                  data-i18n="offers.bulkPrice"
+                ></span>
+              </div>
+            </div>
+            <button
+              class="mt-4 btn-primary inline-flex items-center justify-center gap-2 rounded-full bg-honeyGold text-deepBrown px-4 py-2 text-[0.7rem] font-semibold tracking-[0.18em] uppercase shadow-md shadow-honeyGold/30 hover:bg-honeyGold/90 focus-visible:ring-2 ring-honeyGold ring-offset-2 ring-offset-cream transition"
+              data-combo-order
+              data-combo-id="bulk"
+              data-combo-name="Bulk Pack (3 x 1kg)"
+              data-combo-price="99"
+            >
+              <span data-i18n="offers.orderCta"></span>
+            </button>
+          </article>
         </div>
       </section>
 

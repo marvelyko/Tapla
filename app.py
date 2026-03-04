@@ -82,6 +82,11 @@ def serve_checkout():
   return render_template("checkout.html")
 
 
+@app.route("/shop", methods=["GET"])
+def serve_shop():
+  return render_template("shop.html")
+
+
 @app.route("/admin", methods=["GET"])
 def serve_admin():
   return send_from_directory(BASE_DIR, "admin.html")
@@ -99,6 +104,8 @@ def create_order():
   lang = (data.get("lang") or "en").strip() or "en"
   price_per_unit = data.get("price_per_unit")
   payment_method = (data.get("payment_method") or "").strip()
+  product_name = (data.get("product_name") or "").strip()
+  combo_id = (data.get("combo_id") or "").strip()
 
   try:
     quantity = int(quantity)
@@ -153,6 +160,7 @@ def create_order():
       f"Hi {customer_name},\n\n"
       "Thank you for ordering Tapla – Authentic Georgian Natural Treats.\n"
       "Your order is now being prepared and will be on its way shortly.\n\n"
+      f"Product: {product_name or 'Tapla No. 01'}\n"
       f"Quantity: {quantity}\n"
       f"Unit price: {price_per_unit:.2f}\n"
       f"Estimated total: {total:.2f}\n"
@@ -166,6 +174,7 @@ def create_order():
       f"გამარჯობა {customer_name},\n\n"
       "გმადლობთ, რომ აირჩიეთ Tapla – ნატურალური ქართული ნუგბარი.\n"
       "თქვენი შეკვეთა მიღებულია და მალე გაგიზიარებთ მის გზავნილს.\n\n"
+      f"პროდუქტი: {product_name or 'Tapla No. 01'}\n"
       f"რაოდენობა: {quantity}\n"
       f"ერთეულის ფასი: {price_per_unit:.2f}\n"
       f"სავარაუდო ჯამი: {total:.2f}\n"
@@ -196,6 +205,8 @@ def create_order():
           f"Email: {email}\n"
           f"Phone: {phone}\n"
           f"Address: {address}\n"
+          f"Product: {product_name or 'Tapla No. 01'}\n"
+          f"Combo ID: {combo_id or '-'}\n"
           f"Quantity: {quantity}\n"
           f"Total: {total:.2f}\n"
           f"Payment method: {payment_method or 'Not specified'}\n"

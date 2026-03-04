@@ -14,6 +14,7 @@ const translations = {
     nav: {
       about: "About Us",
       product: "Product",
+      shop: "Shop",
       contact: "Contact",
       orderNow: "Order Now",
     },
@@ -94,6 +95,31 @@ const translations = {
       benefitRecipe: "Traditional Recipe",
       benefitNoSugar: "No Added Sugar",
     },
+    offers: {
+      sectionEyebrow: "Combo Offers",
+      sectionTitle: "Special Bundles",
+      sectionHint:
+        "Hand-picked bundles for sharing Tapla with family, friends, and clients — all with complimentary delivery.",
+      familyTitle: "Family Bundle (2+1 Free)",
+      familyOldPrice: "72 GEL",
+      familyPrice: "48 GEL",
+      duoTitle: "The Duo (1kg + 0.5kg)",
+      duoOldPrice: "68 GEL",
+      duoPrice: "55 GEL",
+      bulkTitle: "Bulk Pack (3 x 1kg)",
+      bulkOldPrice: "120 GEL",
+      bulkPrice: "99 GEL",
+      familyBody:
+        "Perfect when you’re gifting Tapla and keeping a jar for home — 3 jars total (2+1 on us).",
+      duoBody:
+        "One generous jar to keep at home and a smaller one to gift or keep at the studio.",
+      bulkBody:
+        "Ideal for studios, concept stores, or families who move through Tapla quickly.",
+      badgeSale: "Sale",
+      badgeGift: "Gift",
+      badgeBest: "Best Value",
+      orderCta: "Order Now",
+    },
     contact: {
       eyebrow: "Contact Tapla",
       title: "Curious about our treats, sourcing, or stocking Tapla?",
@@ -110,6 +136,24 @@ const translations = {
         "Tell us about your rituals, needs, or ideas.",
       formSubmit: "Send Message",
       formFeedback: "Thank you — your message has been received.",
+    },
+    shop: {
+      eyebrow: "Our Products",
+      title: "Pure nature in every jar",
+      subtitle:
+        "Explore Tapla sizes and bundles — from single jars for quiet mornings to generous sets for gifting and gatherings.",
+      singleEyebrow: "Select Size",
+      bundlesEyebrow: "Bundles",
+      jar05Title: "Tapla No. 01 • 0.5kg",
+      jar05Body:
+        "A smaller jar for everyday rituals, gifting, or tasting.",
+      jar05Price: "24 GEL",
+      jar1Title: "Tapla No. 01 • 1kg",
+      jar1Body:
+        "A generous jar for families, cafés, or Tapla lovers.",
+      jar1Price: "39 GEL",
+      badgeBestseller: "Best Seller",
+      badgeNew: "New",
     },
     checkout: {
       eyebrow: "Secure Checkout",
@@ -141,6 +185,7 @@ const translations = {
       submit: "Confirm Order",
       feedback:
         "Thank you! Your order has been received. We’ll follow up shortly with payment and delivery details.",
+      freeDeliveryLabel: "Free delivery",
     },
     modal: {
       eyebrow: "Reserve Your Treat",
@@ -220,6 +265,7 @@ const translations = {
     nav: {
       about: "ჩვენს შესახებ",
       product: "პროდუქტი",
+      shop: "მაღაზია",
       contact: "კონტაქტი",
       orderNow: "შეკვეთა",
     },
@@ -300,6 +346,31 @@ const translations = {
       benefitRecipe: "ტრადიციული რეცეპტი",
       benefitNoSugar: "შაქრის დანამატის გარეშე",
     },
+    offers: {
+      sectionEyebrow: "კომბო შეთავაზებები",
+      sectionTitle: "სპეციალური ბანდლები",
+      sectionHint:
+        "ფრთხილად შერჩეული ბანდლები ოჯახის, მეგობრებისა და კლიენტებისთვის — ყველა უფასო მიწოდებით.",
+      familyTitle: "ოჯახური ბანდლი (2+1 საჩუქრად)",
+      familyOldPrice: "72 GEL",
+      familyPrice: "48 GEL",
+      duoTitle: "დუო (1კგ + 0.5კგ)",
+      duoOldPrice: "68 GEL",
+      duoPrice: "55 GEL",
+      bulkTitle: "სათავსო პაკეტი (3 x 1კგ)",
+      bulkOldPrice: "120 GEL",
+      bulkPrice: "99 GEL",
+      familyBody:
+        "სრულყოფილია, როცა Tapla-სჩუქნი და ერთ ქილას სახლში იტოვებ — ჯამში 3 ქილა (2+1 ჩვენგან).",
+      duoBody:
+        "ერთი დიდი ქილა სახლში და პატარა — საჩუქრად ან სტუდიაში დასატოვებლად.",
+      bulkBody:
+        "იდეალურია სტუდიებისთვის, კონცეპტ მაღაზიებისთვის ან ოჯახებისთვის, რომლებიც Tapla-ს სწრაფად იყენებენ.",
+      badgeSale: "ფასდაკლება",
+      badgeGift: "საჩუქარი",
+      badgeBest: "საუკეთესო შეთავაზება",
+      orderCta: "შეუკვეთე ახლა",
+    },
     contact: {
       eyebrow: "დაუკავშირდი Tapla-ს",
       title:
@@ -317,6 +388,24 @@ const translations = {
         "გვითხარი შენს რიტუალებზე, საჭიროებებსა და იდეებზე.",
       formSubmit: "გაგზავნა",
       formFeedback: "გმადლობთ — თქვენი შეტყობინება მიღებულია.",
+    },
+    shop: {
+      eyebrow: "ჩვენი პროდუქცია",
+      title: "წმინდა ბუნება ყოველ ქილაში",
+      subtitle:
+        "აღმოაჩინე Tapla-ს ზომები და ბანდლები — ერთი ქილიდან მშვიდი დილებისთვის, großzügულ სეტებამდე საჩუქრებისთვის და შეკრებებისთვის.",
+      singleEyebrow: "ზომის არჩევა",
+      bundlesEyebrow: "ბანდლები",
+      jar05Title: "Tapla No. 01 • 0.5კგ",
+      jar05Body:
+        "მცირე ქილა ყოველდღიური რიტუალებისთვის, გასინჯვისთვის ან საჩუქრად.",
+      jar05Price: "24 GEL",
+      jar1Title: "Tapla No. 01 • 1კგ",
+      jar1Body:
+        "მეტისმეტი ქილა ოჯახებისთვის, კაფეებისთვის ან Tapla-ს გულშემატკივრებისთვის.",
+      jar1Price: "39 GEL",
+      badgeBestseller: "საყვარელი",
+      badgeNew: "ახალი",
     },
     checkout: {
       eyebrow: "უსაფრთხო შეკვეთა",
@@ -349,6 +438,7 @@ const translations = {
       submit: "შეკვეთის დადასტურება",
       feedback:
         "გმადლობთ! შენი შეკვეთა მიღებულია. მცირე ხანში გადახდისა და მიწოდების დეტალებს მოგწერთ.",
+      freeDeliveryLabel: "უფასო მიწოდება",
     },
     modal: {
       eyebrow: "შეიკვეთე შენი ნუგბარი",
@@ -718,13 +808,29 @@ function initLandingPage() {
     }
   }
 
-  // In production, route main CTAs to the dedicated checkout page
+  // Route main CTAs to the Shop page so users see all variants
   openButtons.forEach((btn) =>
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      window.location.href = "/checkout";
+      window.location.href = "/shop";
     })
   );
+
+  // Combo offer CTAs: pass combo id/name/price via query params
+  const comboButtons = document.querySelectorAll("[data-combo-order]");
+  comboButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const comboId = btn.getAttribute("data-combo-id") || "";
+      const comboName = btn.getAttribute("data-combo-name") || "";
+      const comboPrice = btn.getAttribute("data-combo-price") || "";
+      const params = new URLSearchParams();
+      if (comboId) params.set("combo", comboId);
+      if (comboName) params.set("name", comboName);
+      if (comboPrice) params.set("price", comboPrice);
+      window.location.href = `/checkout?${params.toString()}`;
+    });
+  });
 
   if (closeButton) {
     closeButton.addEventListener("click", () => {
@@ -1149,6 +1255,52 @@ function initCheckoutPage() {
 
   if (!checkoutForm) return;
 
+   const params = new URLSearchParams(window.location.search || "");
+   const comboId = params.get("combo") || "";
+   let comboPrice = params.get("price") ? Number(params.get("price")) : NaN;
+   const comboNameFromQuery = params.get("name") || "";
+
+   const lang =
+     (typeof localStorage !== "undefined" &&
+       localStorage.getItem(TAPLA_LANG_KEY)) ||
+     document.documentElement.lang ||
+     "en";
+
+   let productName = "";
+   if (comboId) {
+     const comboKeyMap = {
+       family: "offers.familyTitle",
+       duo: "offers.duoTitle",
+       bulk: "offers.bulkTitle",
+     };
+     const titleKey = comboKeyMap[comboId];
+     if (titleKey) {
+       productName = getTranslation(lang, titleKey) || comboNameFromQuery || comboId;
+     } else {
+       productName = comboNameFromQuery || comboId;
+     }
+     if (!Number.isFinite(comboPrice)) {
+       if (comboId === "family") comboPrice = 48;
+       else if (comboId === "duo") comboPrice = 55;
+       else if (comboId === "bulk") comboPrice = 99;
+     }
+   }
+
+   const summaryLineEl = document.querySelector(
+     "[data-i18n='checkout.summaryLine']"
+   );
+   if (summaryLineEl) {
+     if (comboId && Number.isFinite(comboPrice)) {
+       const freeLabel =
+         getTranslation(lang, "checkout.freeDeliveryLabel") || "Free delivery";
+       summaryLineEl.textContent = `${productName} • ${comboPrice} GEL • ${freeLabel}`;
+     } else {
+       summaryLineEl.textContent =
+         getTranslation(lang, "checkout.summaryLine") ||
+         "Tapla No. 01 – 1 jar • 24 GEL";
+     }
+   }
+
   checkoutForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -1174,12 +1326,6 @@ function initCheckoutPage() {
       }
       return;
     }
-
-    const lang =
-      (typeof localStorage !== "undefined" &&
-        localStorage.getItem(TAPLA_LANG_KEY)) ||
-      document.documentElement.lang ||
-      "en";
 
     const submitTextEl = checkoutForm.querySelector(
       "[data-checkout-submit-text]"
@@ -1207,9 +1353,16 @@ function initCheckoutPage() {
         email,
         address,
         quantity: 1,
-        price_per_unit: TAPLA_PRICE_PER_JAR,
+        price_per_unit: Number.isFinite(comboPrice)
+          ? comboPrice
+          : TAPLA_PRICE_PER_JAR,
         lang,
         payment_method: paymentMethod,
+        product_name:
+          productName ||
+          getTranslation(lang, "product.title") ||
+          "Tapla No. 01",
+        combo_id: comboId || undefined,
       });
     } catch (err) {
       if (checkoutSubmitBtn) {
