@@ -74,7 +74,7 @@ init_db()
 
 @app.route("/", methods=["GET"])
 def serve_index():
-  return render_template("index.html")
+  return render_template("teaser.html")
 
 
 @app.route("/checkout", methods=["GET"])

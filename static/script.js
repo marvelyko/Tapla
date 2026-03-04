@@ -137,6 +137,19 @@ const translations = {
       formSubmit: "Send Message",
       formFeedback: "Thank you — your message has been received.",
     },
+    teaser: {
+      badge: "Coming Soon",
+      headline: "Nature is preparing a surprise…",
+      subtitle:
+        "Something pure and delicious is coming soon to your kitchen. Stay tuned.",
+      notifyLabel: "Notify me when we launch",
+      notifyPlaceholder: "Notify me when we launch",
+      notifyCta: "Notify Me",
+      notifyFeedback:
+        "Thank you — we’ll let you know when Tapla opens its jars.",
+      socialsTitle: "Follow the quiet countdown",
+      footerLine: "Crafted in Georgia. Arriving soon.",
+    },
     shop: {
       eyebrow: "Our Products",
       title: "Pure nature in every jar",
@@ -388,6 +401,19 @@ const translations = {
         "გვითხარი შენს რიტუალებზე, საჭიროებებსა და იდეებზე.",
       formSubmit: "გაგზავნა",
       formFeedback: "გმადლობთ — თქვენი შეტყობინება მიღებულია.",
+    },
+    teaser: {
+      badge: "მალე",
+      headline: "ბუნება სიურპრიზს ამზადებს…",
+      subtitle:
+        "რაღაც ძალიან სუფთა და გემრიელი მალე თქვენს სამზარეულოში გაჩნდება. ადევნეთ თვალი სიახლეებს.",
+      notifyLabel: "შემატყობინე, როცა გავიხსნებით",
+      notifyPlaceholder: "შემატყობინე, როცა გავიხსნებით",
+      notifyCta: "შემატყობინე",
+      notifyFeedback:
+        "გმადლობთ — Tapla-ს გახსნისთანავე შეგატყობინებთ.",
+      socialsTitle: "გადავყევით მშვიდ Cowntown-ს",
+      footerLine: "შექმნილი საქართველოში. მალე მოვალთ.",
     },
     shop: {
       eyebrow: "ჩვენი პროდუქცია",
