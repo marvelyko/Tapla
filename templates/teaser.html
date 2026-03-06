@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tapla | Coming Soon</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
   </head>
 
   <body class="teaser-page">
@@ -18,7 +21,9 @@
 
       <!-- Language toggle (top right) -->
       <div class="teaser-lang-row">
-        <button type="button" data-lang-toggle="en" class="lang-btn active">EN</button>
+        <button type="button" data-lang-toggle="en" class="lang-btn active">
+          EN
+        </button>
         <span class="teaser-lang-sep" aria-hidden="true">|</span>
         <button type="button" data-lang-toggle="ka" class="lang-btn">KA</button>
       </div>
@@ -27,7 +32,7 @@
       <div class="teaser-content">
         <div class="teaser-logo-container">
           <img
-            src="{{ url_for('static', filename='images/logo.png') }}"
+            src="{{ url_for('static', filename='images/logo.svg') }}"
             alt="Tapla - Natural Georgian Treats"
             class="teaser-logo"
             onerror="this.onerror=null; var w=this.closest('.teaser-logo-container'); if(w){ var d=document.createElement('div'); d.className='teaser-logo-fallback'; d.setAttribute('data-i18n','teaser.logoMissing'); d.textContent='Logo image missing'; w.innerHTML=''; w.appendChild(d); if(typeof setLanguage==='function') setLanguage(document.documentElement.lang||'en'); }"
@@ -39,14 +44,24 @@
             <span data-i18n="teaser.badge">Coming Soon</span>
           </p>
           <h1 class="teaser-headline">
-            <span data-i18n="teaser.headline">Nature is preparing a surprise…</span>
+            <span data-i18n="teaser.headline"
+              >Nature is preparing a surprise…</span
+            >
           </h1>
           <p class="teaser-subtitle">
-            <span data-i18n="teaser.subtitle">Something pure and delicious is coming soon to your kitchen. Stay tuned.</span>
+            <span data-i18n="teaser.subtitle"
+              >Something pure and delicious is coming soon to your kitchen. Stay
+              tuned.</span
+            >
           </p>
 
           <form id="teaserNotifyForm" class="teaser-form">
-            <label for="teaserEmail" class="teaser-sr-only" data-i18n="teaser.notifyLabel">Notify me when we launch</label>
+            <label
+              for="teaserEmail"
+              class="teaser-sr-only"
+              data-i18n="teaser.notifyLabel"
+              >Notify me when we launch</label
+            >
             <div class="teaser-form-row">
               <input
                 id="teaserEmail"
@@ -59,22 +74,42 @@
                 <span data-i18n="teaser.notifyCta">Notify Me</span>
               </button>
             </div>
-            <p id="teaserNotifyFeedback" class="teaser-feedback teaser-feedback-hidden" data-i18n="teaser.notifyFeedback">
+            <p
+              id="teaserNotifyFeedback"
+              class="teaser-feedback teaser-feedback-hidden"
+              data-i18n="teaser.notifyFeedback"
+            >
               Thank you — we’ll let you know when Tapla opens its jars.
             </p>
           </form>
 
           <div class="teaser-social-block">
-            <p class="teaser-social-title" data-i18n="teaser.socialsTitle">Follow the quiet countdown</p>
+            <p class="teaser-social-title" data-i18n="teaser.socialsTitle">
+              Follow the quiet countdown
+            </p>
             <div class="teaser-social-btns">
-              <button type="button" class="teaser-social-btn" aria-label="Open Tapla Instagram">IG</button>
-              <button type="button" class="teaser-social-btn" aria-label="Open Tapla Facebook">FB</button>
+              <button
+                type="button"
+                class="teaser-social-btn"
+                aria-label="Open Tapla Instagram"
+              >
+                IG
+              </button>
+              <button
+                type="button"
+                class="teaser-social-btn"
+                aria-label="Open Tapla Facebook"
+              >
+                FB
+              </button>
             </div>
           </div>
         </div>
 
         <p class="teaser-footer-line">
-          <span data-i18n="teaser.footerLine">Crafted in Georgia. Arriving soon.</span>
+          <span data-i18n="teaser.footerLine"
+            >Crafted in Georgia. Arriving soon.</span
+          >
         </p>
       </div>
     </div>
