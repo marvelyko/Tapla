@@ -236,6 +236,62 @@
           </div>
         </div>
 
+        <div
+          class="glass-panel rounded-2xl border border-honeyGold/40 shadow-lg shadow-deepBrown/10 overflow-hidden"
+        >
+          <div
+            class="px-4 sm:px-6 py-3 border-b border-brown-100/70 flex items-center justify-between gap-3 text-xs"
+          >
+            <div class="flex items-center gap-2 text-deepBrown/75">
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-honeyGold text-deepBrown text-[0.7rem]"
+              >
+                S
+              </span>
+              <span
+                class="text-[0.75rem] tracking-[0.18em] uppercase"
+                data-i18n="admin.subscribersTitle"
+              >
+                Subscribers
+              </span>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-xs sm:text-sm">
+              <thead class="bg-cream/80 border-b border-brown-100/70">
+                <tr
+                  class="text-left text-[0.7rem] sm:text-[0.75rem] tracking-[0.16em] uppercase text-deepBrown/60"
+                >
+                  <th
+                    class="px-3 sm:px-4 py-3 whitespace-nowrap"
+                    data-i18n="admin.subscribersDate"
+                  >
+                    Date
+                  </th>
+                  <th
+                    class="px-3 sm:px-4 py-3 whitespace-nowrap"
+                    data-i18n="admin.subscribersEmail"
+                  >
+                    Email
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="subscribersTableBody" class="divide-y divide-brown-100/80">
+                <!-- Filled by script.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <div
+            id="subscribersEmptyState"
+            class="px-4 sm:px-6 py-6 text-center text-xs text-deepBrown/65 hidden"
+            data-i18n="admin.subscribersEmpty"
+          >
+            There are no subscribers yet.
+          </div>
+        </div>
+
         <p
           class="text-[0.7rem] text-deepBrown/60"
           data-i18n="admin.footerNote"

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ka">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tapla | Error {{ error_code }}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body class="teaser-page">
+    <div class="teaser-wrapper">
+      <div
+        class="teaser-bg"
+        style="background-image: url('{{ url_for('static', filename='images/background-kitchen.png') }}?v=2');"
+      ></div>
+      <div class="teaser-bg-overlay"></div>
+
+      <div class="teaser-content">
+        <div class="teaser-logo-container">
+          <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Tapla - Natural Georgian Treats"
+            class="teaser-logo"
+          />
+        </div>
+
+        <div class="teaser-glass-card">
+          <div class="error-code-text">
+            {{ error_code }}
+          </div>
+          <p class="teaser-subtitle">
+            {{ error_message }}
+          </p>
+          <div style="margin-top: 1.5rem;">
+            <a href="/" class="teaser-btn-submit">
+              მთავარ გვერდზე დაბრუნება
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
+

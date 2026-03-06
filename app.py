@@ -3,8 +3,13 @@ import sqlite3
 from datetime import datetime, timedelta
 from threading import Thread
 
-from flask import Flask, jsonify, render_template, request, send_from_directory
+from dotenv import load_dotenv
+from flask import Flask, abort, jsonify, render_template, request, send_from_directory
 from flask_mail import Mail, Message
+
+
+# Load environment variables before any os.getenv calls or route registration
+load_dotenv()
 
 
 def send_async_email(flask_app, msg):
@@ -87,9 +92,21 @@ def serve_shop():
   return render_template("shop.html")
 
 
-@app.route("/admin", methods=["GET"])
-def serve_admin():
+def admin_dashboard():
+  token = request.args.get("token")
+  expected_token = os.getenv("ADMIN_ACCESS_TOKEN")
+  if not expected_token or token != expected_token:
+    abort(404)
+
   return send_from_directory(BASE_DIR, "admin.html")
+
+
+app.add_url_rule(
+    os.getenv("ADMIN_SECRET_PATH", "/fallback-admin-404"),
+    "admin_view",
+    admin_dashboard,
+    methods=["GET"],
+)
 
 
 @app.route("/api/order", methods=["POST"])
@@ -218,6 +235,27 @@ def create_order():
   return jsonify({"id": order_id, "status": "ok"}), 201
 
 
+@app.route("/api/subscribe", methods=["POST"])
+def subscribe():
+  data = request.get_json(silent=True) or {}
+  email = (data.get("email") or "").strip()
+
+  if not email:
+    return jsonify({"success": False, "message": "Email is required."}), 400
+
+  timestamp = datetime.utcnow().isoformat()
+  line = f"{timestamp} {email}\n"
+
+  subscribers_path = os.path.join(BASE_DIR, "subscribers.txt")
+  try:
+    with open(subscribers_path, "a", encoding="utf-8") as f:
+      f.write(line)
+  except OSError:
+    return jsonify({"success": False, "message": "Unable to save subscription."}), 500
+
+  return jsonify({"success": True, "message": "Subscribed successfully"})
+
+
 def check_admin_auth(req):
   header_password = req.headers.get("X-Admin-Password")
   if header_password and header_password == ADMIN_PASSWORD:
@@ -253,6 +291,33 @@ def get_orders():
   ]
 
   return jsonify({"orders": orders})
+
+
+@app.route("/admin/subscribers", methods=["GET"])
+def get_subscribers():
+  if not check_admin_auth(request):
+    return jsonify({"error": "Unauthorized"}), 401
+
+  subscribers_path = os.path.join(BASE_DIR, "subscribers.txt")
+  items = []
+
+  if os.path.exists(subscribers_path):
+    try:
+      with open(subscribers_path, encoding="utf-8") as f:
+        for line in f:
+          raw = line.strip()
+          if not raw:
+            continue
+          try:
+            timestamp, email = raw.split(" ", 1)
+          except ValueError:
+            continue
+          items.append({"timestamp": timestamp, "email": email})
+    except OSError:
+      # On read error, return empty list
+      items = []
+
+  return jsonify({"subscribers": items})
 
 
 @app.route("/admin/orders/<int:order_id>/status", methods=["POST"])
@@ -301,7 +366,6 @@ def sitemap():
   base_url = "https://example.com"
   urls = [
       f"{base_url}/",
-      f"{base_url}/admin",
   ]
   xml_parts = [
       '<?xml version="1.0" encoding="UTF-8"?>',
@@ -314,6 +378,30 @@ def sitemap():
   xml_parts.append("</urlset>")
   body = "\n".join(xml_parts)
   return body, 200, {"Content-Type": "application/xml; charset=utf-8"}
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+  return (
+      render_template(
+          "error.html",
+          error_code="404",
+          error_message="ბოდიშით, ეს გვერდი ვერ მოიძებნა...",
+      ),
+      404,
+  )
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+  return (
+      render_template(
+          "error.html",
+          error_code="500",
+          error_message="სერვერზე მცირე შეფერხებაა, მალე დავბრუნდებით...",
+      ),
+      500,
+  )
 
 
 if __name__ == "__main__":

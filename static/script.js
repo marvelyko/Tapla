@@ -273,6 +273,10 @@ const translations = {
         "Note: This admin panel is intentionally lightweight and reads directly from your browser’s localStorage. For production use, integrate it with a secure backend and authenticated admin access.",
       orderBtnDone: "Done",
       orderBtnDelete: "Delete",
+      subscribersTitle: "Subscribers",
+      subscribersDate: "Date",
+      subscribersEmail: "Email",
+      subscribersEmpty: "There are no subscribers yet.",
     },
   },
   ka: {
@@ -539,6 +543,10 @@ const translations = {
         "შენიშვნა: ეს პანელი მინიმალისტურია და იყენებს მხოლოდ ბრაუზერის localStorage-ს. საწარმოო გარემოში გამოიყენეთ დაცული backend და ავტორიზებული წვდომა.",
       orderBtnDone: "დასრულებულია",
       orderBtnDelete: "წაშლა",
+      subscribersTitle: "გამომწერები",
+      subscribersDate: "თარიღი",
+      subscribersEmail: "ელ.ფოსტა",
+      subscribersEmpty: "ჯერ არცერთი გამომწერი არ არის.",
     },
   },
 };
@@ -716,6 +724,45 @@ async function apiDeleteOrder(id, adminPassword) {
   }
 
   return res.json();
+}
+
+async function apiFetchSubscribers(adminPassword) {
+  const res = await fetch("/admin/subscribers", {
+    method: "GET",
+    headers: {
+      "X-Admin-Password": adminPassword,
+    },
+  });
+
+  if (res.status === 401) {
+    throw new Error("unauthorized");
+  }
+
+  if (!res.ok) {
+    throw new Error("Failed to load subscribers.");
+  }
+
+  const data = await res.json();
+  return data.subscribers || [];
+}
+
+async function apiSubscribe(email) {
+  const res = await fetch("/api/subscribe", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+
+  const data = await res.json().catch(() => ({}));
+
+  if (!res.ok || !data || data.success === false) {
+    const message = (data && data.message) || "Unable to subscribe. Please try again.";
+    throw new Error(message);
+  }
+
+  return data;
 }
 
 // ---------------------------
@@ -1009,6 +1056,65 @@ function initLandingPage() {
 }
 
 // ---------------------------
+// Teaser page logic
+// ---------------------------
+
+function initTeaserPage() {
+  const form =
+    document.getElementById("teaser-form") ||
+    document.getElementById("teaserNotifyForm");
+  const emailInput =
+    document.getElementById("teaser-email") ||
+    document.getElementById("teaserEmail");
+  const feedback =
+    document.querySelector(".teaser-feedback") ||
+    document.getElementById("teaserNotifyFeedback");
+
+  if (!form || !emailInput) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const rawEmail = emailInput.value || "";
+    const email = rawEmail.trim();
+    if (!email) return;
+
+    const submitButton = form.querySelector("button[type='submit']");
+
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
+    try {
+      await apiSubscribe(email);
+
+      emailInput.classList.add("hidden");
+      if (submitButton) {
+        submitButton.classList.add("hidden");
+      }
+      if (feedback) {
+        feedback.classList.remove("teaser-feedback-hidden", "hidden");
+        feedback.classList.add("text-green-600");
+        feedback.style.color = "#16a34a";
+      }
+    } catch (err) {
+      if (feedback) {
+        feedback.classList.remove("teaser-feedback-hidden", "hidden");
+        feedback.classList.remove("text-green-600");
+        feedback.style.color = "#b91c1c";
+        feedback.textContent =
+          err && err.message
+            ? err.message
+            : "Unable to subscribe. Please try again.";
+      }
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
+    }
+  });
+}
+
+// ---------------------------
 // Admin panel logic
 // ---------------------------
 
@@ -1029,6 +1135,8 @@ function initAdminPage() {
   const clearAllOrdersBtn = document.getElementById("clearAllOrdersBtn");
   const emptyState = document.getElementById("emptyState");
   const exportOrdersBtn = document.getElementById("exportOrdersBtn");
+  const subscribersTableBody = document.getElementById("subscribersTableBody");
+  const subscribersEmptyState = document.getElementById("subscribersEmptyState");
 
   if (!ordersTableBody) return;
 
@@ -1151,6 +1259,59 @@ function initAdminPage() {
       `;
 
       ordersTableBody.appendChild(tr);
+    });
+  }
+
+  async function renderSubscribers() {
+    if (!subscribersTableBody) return;
+
+    let subscribers = [];
+    try {
+      subscribers = await apiFetchSubscribers(adminPassword);
+    } catch (err) {
+      if (err.message === "unauthorized") {
+        alert("Access denied.");
+        window.location.href = "./index.html";
+        return;
+      }
+      alert(err.message || "Unable to load subscribers.");
+      return;
+    }
+
+    subscribersTableBody.innerHTML = "";
+
+    if (!subscribers.length) {
+      if (subscribersEmptyState) {
+        subscribersEmptyState.classList.remove("hidden");
+      }
+      return;
+    }
+
+    if (subscribersEmptyState) {
+      subscribersEmptyState.classList.add("hidden");
+    }
+
+    subscribers.forEach((entry) => {
+      const dateLabel = entry.timestamp
+        ? new Date(entry.timestamp).toLocaleString(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        : "";
+      const tr = document.createElement("tr");
+      tr.className = "hover:bg-cream/70";
+      tr.innerHTML = `
+        <td class="align-top px-3 sm:px-4 py-3 whitespace-nowrap text-[0.75rem] text-deepBrown/80">
+          ${dateLabel}
+        </td>
+        <td class="align-top px-3 sm:px-4 py-3 whitespace-nowrap text-[0.8rem] text-deepBrown/85">
+          ${entry.email || ""}
+        </td>
+      `;
+      subscribersTableBody.appendChild(tr);
     });
   }
 
@@ -1284,6 +1445,7 @@ function initAdminPage() {
   }
 
   renderOrders();
+  renderSubscribers();
 }
 
 // ---------------------------
@@ -1454,7 +1616,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedLang =
     (typeof localStorage !== "undefined" &&
       localStorage.getItem(TAPLA_LANG_KEY)) ||
-    "en";
+    "ka";
   try {
     setLanguage(savedLang);
   } catch (err) {
@@ -1475,6 +1637,13 @@ document.addEventListener("DOMContentLoaded", () => {
   } catch (err) {
     if (typeof console !== "undefined" && console.warn) {
       console.warn("initAdminPage failed:", err);
+    }
+  }
+  try {
+    initTeaserPage();
+  } catch (err) {
+    if (typeof console !== "undefined" && console.warn) {
+      console.warn("initTeaserPage failed:", err);
     }
   }
   try {

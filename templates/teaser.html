@@ -21,11 +21,13 @@
 
       <!-- Language toggle (top right) -->
       <div class="teaser-lang-row">
-        <button type="button" data-lang-toggle="en" class="lang-btn active">
+        <button type="button" data-lang-toggle="en" class="lang-btn">
           EN
         </button>
         <span class="teaser-lang-sep" aria-hidden="true">|</span>
-        <button type="button" data-lang-toggle="ka" class="lang-btn">KA</button>
+        <button type="button" data-lang-toggle="ka" class="lang-btn active">
+          KA
+        </button>
       </div>
 
       <!-- Content -->
@@ -55,7 +57,7 @@
             >
           </p>
 
-          <form id="teaserNotifyForm" class="teaser-form">
+          <form id="teaser-form" class="teaser-form">
             <label
               for="teaserEmail"
               class="teaser-sr-only"
@@ -64,7 +66,7 @@
             >
             <div class="teaser-form-row">
               <input
-                id="teaserEmail"
+                id="teaser-email"
                 type="email"
                 class="teaser-input"
                 placeholder="you@example.com"
