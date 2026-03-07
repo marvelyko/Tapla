@@ -142,12 +142,12 @@ const translations = {
       headline: "Nature is preparing a surprise…",
       subtitle:
         "Something pure and delicious is coming soon to your kitchen. Stay tuned.",
-      notifyLabel: "Notify me when we launch",
-      notifyPlaceholder: "Notify me when we launch",
+      notifyLabel: "Notify me via email when we launch",
+      notifyPlaceholder: "Notify me via email when we launch",
       notifyCta: "Notify Me",
       notifyFeedback:
         "Thank you — we’ll let you know when Tapla opens its jars.",
-      socialsTitle: "Follow the quiet countdown",
+      socialsTitle: "Follow us on social media:",
       footerLine: "Crafted in Georgia. Arriving soon.",
       logoMissing: "Logo image missing — add static/images/logo.png",
     },
@@ -412,12 +412,12 @@ const translations = {
       headline: "ბუნება სიურპრიზს ამზადებს…",
       subtitle:
         "რაღაც ძალიან სუფთა და გემრიელი მალე თქვენს სამზარეულოში გაჩნდება. ადევნეთ თვალი სიახლეებს.",
-      notifyLabel: "შემატყობინე, როცა გავიხსნებით",
-      notifyPlaceholder: "შემატყობინე, როცა გავიხსნებით",
+      notifyLabel: "შემატყობინე ელ. ფოსტაზე, როცა გავიხსნებით",
+      notifyPlaceholder: "შემატყობინე ელ. ფოსტაზე, როცა გავიხსნებით",
       notifyCta: "შემატყობინე",
       notifyFeedback:
         "გმადლობთ — Tapla-ს გახსნისთანავე შეგატყობინებთ.",
-      socialsTitle: "გადავყევით მშვიდ Cowntown-ს",
+      socialsTitle: "გამოგვიწერეთ პლატფორმებზე:",
       footerLine: "შექმნილი საქართველოში. მალე მოვალთ.",
       logoMissing: "ლოგო არ არის — დაამატეთ static/images/logo.png",
     },
