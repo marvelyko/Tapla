@@ -380,6 +380,10 @@ body {
   border-color: rgba(63, 42, 29, 0.4);
 }
 
+a.teaser-social-btn {
+  text-decoration: none;
+}
+
 /* Footer line (outside card) */
 .teaser-footer-line {
   font-size: 10px;
